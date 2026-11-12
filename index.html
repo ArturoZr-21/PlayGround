@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Track Star Clash</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Rivalry circuit</p>
+          <h1>Track Star Clash</h1>
+        </div>
+        <div class="topbar-stats">
+          <div class="chip">
+            <span>Day</span>
+            <strong id="dayLabel">1</strong>
+          </div>
+          <div class="chip">
+            <span>Rank</span>
+            <strong id="rankLabel">Rookie</strong>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section id="setupScreen" class="panel setup-screen">
+          <div class="panel-header">
+            <p class="eyebrow">Training academy</p>
+            <h2>Forge your star</h2>
+          </div>
+
+          <label class="field">
+            <span>Runner name</span>
+            <input id="runnerName" type="text" maxlength="18" value="Aster Nova" />
+          </label>
+
+          <div class="difficulty-row">
+            <label class="field compact">
+              <span>Style</span>
+              <select id="styleSelect">
+                <option value="burst">Burst</option>
+                <option value="balanced" selected>Balanced</option>
+                <option value="guard">Guard</option>
+              </select>
+            </label>
+
+            <label class="field compact">
+              <span>Difficulty</span>
+              <select id="difficultySelect">
+                <option value="rookie">Rookie</option>
+                <option value="pro" selected>Pro</option>
+                <option value="legend">Legend</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="setup-card">
+            <h3>Trainer notes</h3>
+            <p>
+              Build stamina, read enemy patterns, and land final blows when your charge meter peaks.
+            </p>
+          </div>
+
+          <button id="startButton" class="primary-button">Enter the circuit</button>
+        </section>
+
+        <section id="battleScreen" class="panel battle-screen hidden">
+          <div class="arena">
+            <canvas id="arenaCanvas" class="arena-canvas" aria-label="Animated 3D rivalry arena"></canvas>
+            <div class="fighter player-card">
+              <div class="fighter-header">
+                <span id="playerName">Aster Nova</span>
+                <span id="playerMood">Ready</span>
+              </div>
+              <div class="avatar avatar-player">
+                <div class="face"></div>
+                <div class="tail"></div>
+                <div class="boost"></div>
+              </div>
+              <div class="resource-list">
+                <div class="resource">
+                  <label>HP</label>
+                  <div class="bar"><span id="playerHpBar"></span></div>
+                  <small id="playerHpReadout">100 / 100</small>
+                </div>
+                <div class="resource">
+                  <label>Charge</label>
+                  <div class="bar charge"><span id="playerChargeBar"></span></div>
+                  <small id="playerChargeReadout">0 / 100</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="versus">VS</div>
+
+            <div class="fighter enemy-card">
+              <div class="fighter-header">
+                <span id="enemyName">Neon Vex</span>
+                <span id="enemyMood">Fierce</span>
+              </div>
+              <div class="avatar avatar-enemy">
+                <div class="face"></div>
+                <div class="tail"></div>
+                <div class="boost"></div>
+              </div>
+              <div class="resource-list">
+                <div class="resource">
+                  <label>HP</label>
+                  <div class="bar enemy"><span id="enemyHpBar"></span></div>
+                  <small id="enemyHpReadout">100 / 100</small>
+                </div>
+                <div class="resource">
+                  <label>Focus</label>
+                  <div class="bar enemy-charge"><span id="enemyChargeBar"></span></div>
+                  <small id="enemyChargeReadout">0 / 100</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="battle-log-wrap">
+            <div class="panel-header small-header">
+              <p class="eyebrow">Arena feed</p>
+              <h3>Round report</h3>
+            </div>
+            <div id="battleLog" class="battle-log"></div>
+          </div>
+
+          <div class="actions-grid">
+            <button data-action="dash" class="action-button burst">Dash</button>
+            <button data-action="guard" class="action-button guard">Guard</button>
+            <button data-action="focus" class="action-button focus">Focus</button>
+            <button data-action="finisher" class="action-button finisher">Finisher</button>
+            <button data-action="recover" class="action-button recover">Recover</button>
+          </div>
+        </section>
+
+        <section id="resultScreen" class="panel result-screen hidden">
+          <div class="panel-header">
+            <p class="eyebrow">Circuit result</p>
+            <h2 id="resultTitle">Victory</h2>
+          </div>
+
+          <div class="result-summary" id="resultSummary"></div>
+
+          <div class="result-actions">
+            <button id="nextBattleButton" class="primary-button">Next race</button>
+            <button id="restartButton" class="secondary-button">Restart</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="arena3d.js"></script>
+    <script src="game.js"></script>
+  </body>
+</html>
